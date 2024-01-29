@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0045)https://ursatile.github.io/mwnet/editorconfig -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root = true
+root = true
 # Remove the line below if you want to inherit .editorconfig settings from higher directories
 
 [*.*]
@@ -391,7 +389,3 @@ resharper_suggest_var_or_type_simple_types_highlighting = hint
 indent_style = tab
 indent_size = tab
 tab_width = 4
-
-</code></pre></div></div>
-
-</body></html>

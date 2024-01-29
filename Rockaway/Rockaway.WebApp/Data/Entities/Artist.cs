@@ -1,5 +1,3 @@
-// Rockaway.WebApp/Data/Entities/Artist.cs
-
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
