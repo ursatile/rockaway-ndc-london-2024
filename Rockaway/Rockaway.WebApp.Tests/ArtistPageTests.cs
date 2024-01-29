@@ -16,10 +16,13 @@ public class ArtistPageTests {
 	[Theory]
 	[MemberData(nameof(Artists))]
 	public async Task Artist_Page_Contains_All_Artists(string expectedName) {
-		await using var factory = new WebApplicationFactory<Program>();
+		await using var factory = new WebApplicationFactory<Program>()
+			.WithWebHostBuilder(builder => builder.AddFakeAuthentication("test@test"));
 		var client = factory.CreateClient();
-		var html = await client.GetStringAsync("/artists");
+		var html = await client.GetStringAsync("/admin/artists");
 		html = WebUtility.HtmlDecode(html);
 		html.ShouldContain(expectedName);
 	}
+
+
 }
