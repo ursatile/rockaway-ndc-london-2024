@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockaway.WebApp", "Rockaway.WebApp\Rockaway.WebApp.csproj", "{34FB9E56-694B-4FC1-8CB4-2E876A66C671}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockaway.WebApp.Tests", "Rockaway.WebApp.Tests\Rockaway.WebApp.Tests.csproj", "{6429F3D2-6A45-4533-BA73-221F6751A76E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{34FB9E56-694B-4FC1-8CB4-2E876A66C671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FB9E56-694B-4FC1-8CB4-2E876A66C671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34FB9E56-694B-4FC1-8CB4-2E876A66C671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
