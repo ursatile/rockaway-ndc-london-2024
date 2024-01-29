@@ -33,7 +33,7 @@ public class StatusTests {
 	public async Task Status_Returns_Correct_Hostname() {
 		await using var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder.ConfigureServices(services => {
 			services.AddSingleton<IStatusReporter>(new TestStatusReporter());
-		})); 
+		}));
 		using var client = factory.CreateClient();
 		var json = await client.GetStringAsync("/status");
 		var status = JsonSerializer.Deserialize<ServerStatus>(json, jsonSerializerOptions);
