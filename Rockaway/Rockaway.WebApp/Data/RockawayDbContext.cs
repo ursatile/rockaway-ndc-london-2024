@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Rockaway.WebApp.Data.Entities;
 using Rockaway.WebApp.Data.Sample;
@@ -18,7 +18,10 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options) :
 		base.OnModelCreating(modelBuilder);
 		// Override EF Core's default table naming (which pluralizes entity names)
 		// and use the same names as the C# classes instead
-		foreach (var entity in modelBuilder.Model.GetEntityTypes()) {
+		var rockawayEntityNamespace = typeof(Artist).Namespace;
+		var rockawayEntities = modelBuilder.Model.GetEntityTypes()
+			.Where(e => e.ClrType.Namespace == rockawayEntityNamespace);
+		foreach (var entity in rockawayEntities) {
 			entity.SetTableName(entity.DisplayName());
 		}
 
