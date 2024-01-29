@@ -1,5 +1,4 @@
 using Rockaway.WebApp.Services;
-using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
