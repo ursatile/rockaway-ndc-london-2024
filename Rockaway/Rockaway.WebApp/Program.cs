@@ -33,6 +33,10 @@ if (HostEnvironmentExtensions.UseSqlite(builder.Environment)) {
 builder.Services.AddDefaultIdentity<IdentityUser>()
 	.AddEntityFrameworkStores<RockawayDbContext>();
 
+#if DEBUG && !NCRUNCH
+builder.Services.AddSassCompiler();
+#endif
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope()) {
