@@ -36,7 +36,7 @@ namespace Rockaway.WebApp.Controllers {
 
 		// GET: Artists/Edit/5
 		public async Task<IActionResult> Edit(Guid? id) {
-			if (id == null)return NotFound();
+			if (id == null) return NotFound();
 			var artist = await db.Artists.FindAsync(id);
 			if (artist == null) return NotFound();
 			return View(artist);
