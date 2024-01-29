@@ -7,12 +7,14 @@ public interface IStatusReporter {
 }
 
 public class StatusReporter : IStatusReporter {
+	private static DateTimeOffset ApplicationStartedAt = DateTimeOffset.UtcNow;
 	private static readonly Assembly assembly = Assembly.GetEntryAssembly()!;
 	public ServerStatus GetStatus() => new() {
 		Assembly = assembly.FullName ?? "Assembly.GetEntryAssembly() returned null",
 		Modified = new DateTimeOffset(File.GetLastWriteTimeUtc(assembly.Location), TimeSpan.Zero).ToString("O"),
 		Hostname = Environment.MachineName,
-		DateTime = DateTimeOffset.UtcNow.ToString("O")
+		DateTime = DateTimeOffset.UtcNow.ToString("O"),
+		Uptime = (DateTimeOffset.UtcNow - ApplicationStartedAt).ToString("g"),
 	};
 }
 
@@ -21,4 +23,5 @@ public class ServerStatus {
 	public string Modified { get; set; } = String.Empty;
 	public string Hostname { get; set; } = String.Empty;
 	public string DateTime { get; set; } = String.Empty;
+	public string Uptime { get; set; } = String.Empty;
 }
