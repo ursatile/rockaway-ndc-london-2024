@@ -15,8 +15,8 @@ public class ShowViewData(Show show) {
 	public string CountryCode { get; } = show.Venue.CountryCode;
 
 	public List<string> SupportActs { get; } = show.SupportSlots
-		.OrderBy(s => s.SlotNumber)
-		.Select(s => s.Artist.Name).ToList();
+			.OrderBy(s => s.SlotNumber)
+			.Select(s => s.Artist.Name).ToList();
 
 	public List<TicketType> TicketTypes { get; } = show.TicketTypes;
 

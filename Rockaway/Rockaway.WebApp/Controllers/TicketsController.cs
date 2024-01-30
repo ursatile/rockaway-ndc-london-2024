@@ -29,6 +29,6 @@ public class TicketsController(RockawayDbContext db, IClock clock) : Controller 
 		var ticketOrder = show.CreateOrder(tickets, clock.GetCurrentInstant());
 		db.TicketOrders.Add(ticketOrder);
 		await db.SaveChangesAsync();
-		return Content($"Your order reference is {ticketOrder.Reference}");
+		return RedirectToAction("Confirm", "Checkout", new { id = ticketOrder.Id });
 	}
 }
