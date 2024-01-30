@@ -65,9 +65,11 @@ public class Venue {
 		return show;
 	}
 
+	public string FormatPrice(decimal price) => price.ToString("C", cultureInfo);
+
 	private IEnumerable<string?> AddressTokens => [Address, City, PostalCode];
 	public string FullAddress => String.Join(", ", AddressTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
 
-	public string FormatPrice(decimal price)
-		=> price.ToString("C", cultureInfo);
+	private IEnumerable<string?> SummaryTokens => [Name, Address, City, PostalCode, Country.GetName(CountryCode)];
+	public string Summary => String.Join(", ", SummaryTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
 }

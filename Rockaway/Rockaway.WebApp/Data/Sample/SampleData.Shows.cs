@@ -18,6 +18,7 @@ public static partial class SampleData {
 		}));
 		return show;
 	}
+
 	public static class Shows {
 
 		private static int seed = 1;
@@ -41,7 +42,6 @@ public static partial class SampleData {
 			.WithTicketType(NextId, "General Admission", price: 35)
 			.WithTicketType(NextId, "VIP Meet & Greet", price: 75)
 			.WithSupportActs(Artists.KillerBite, Artists.Overflow, Artists.JavasCrypt);
-
 
 		public static readonly Show Coda_NewCrossInn_20240520 = Venues.NewCrossInn
 			.BookShow(Artists.Coda, new(2024, 5, 20))
