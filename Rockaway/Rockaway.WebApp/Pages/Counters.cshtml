@@ -1,0 +1,8 @@
+@page
+@using Rockaway.WebApp.Components
+@model Rockaway.WebApp.Pages.CountersModel
+
+@(await Html.RenderComponentAsync<Counter>(
+	RenderMode.Server, new { } ))
+
+

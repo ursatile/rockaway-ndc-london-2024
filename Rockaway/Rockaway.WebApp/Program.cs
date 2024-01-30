@@ -3,6 +3,8 @@ using Microsoft.Data.Sqlite;
 using Rockaway.WebApp.Data;
 using Rockaway.WebApp.Hosting;
 using Rockaway.WebApp.Services;
+using Rockaway.WebApp.Components;
+
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -12,6 +14,7 @@ builder.Services.AddControllersWithViews(options => {
 });
 builder.Services.AddSingleton<IStatusReporter>(new StatusReporter());
 builder.Services.AddSingleton<IClock>(SystemClock.Instance);
+
 
 #if DEBUG && !NCRUNCH
 builder.Services.AddSassCompiler();
@@ -37,6 +40,11 @@ if (HostEnvironmentExtensions.UseSqlite(builder.Environment)) {
 builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<RockawayDbContext>();
 
 builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+
+builder.Services.AddRazorComponents()
+	.AddInteractiveServerComponents();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,6 +74,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAntiforgery();
 
 app.MapRazorPages();
 app.MapGet("/status", (IStatusReporter reporter) => reporter.GetStatus());
@@ -76,6 +85,10 @@ app.MapAreaControllerRoute(
 ).RequireAuthorization();
 app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 app.MapControllers();
+
+app.MapRazorComponents<App>()
+	.AddInteractiveServerRenderMode();
+
 app.Run();
 
 ILogger<T> CreateAdHocLogger<T>() => LoggerFactory.Create(lb => lb.AddConsole()).CreateLogger<T>();
