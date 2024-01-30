@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NodaTime;
+
+// ReSharper disable ClassNeverInstantiated.Local
 
 namespace Rockaway.WebApp.Data;
 

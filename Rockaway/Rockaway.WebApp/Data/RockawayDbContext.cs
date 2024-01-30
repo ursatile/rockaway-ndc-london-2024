@@ -13,7 +13,6 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 	public DbSet<Artist> Artists { get; set; } = default!;
 	public DbSet<Venue> Venues { get; set; } = default!;
 
-
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) {
 		base.ConfigureConventions(configurationBuilder);
 		configurationBuilder.AddNodaTimeConverters();
@@ -56,9 +55,13 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 		});
 
 		modelBuilder.Entity<Artist>()
-			.HasData(SampleData.Artists.AllArtists);
+			.HasData(SeedData.For(SampleData.Artists.AllArtists));
 		modelBuilder.Entity<Venue>()
-			.HasData(SampleData.Venues.AllVenues);
+			.HasData(SeedData.For(SampleData.Venues.AllVenues));
+		modelBuilder.Entity<Show>()
+			.HasData(SeedData.For(SampleData.Shows.AllShows));
+		modelBuilder.Entity<SupportSlot>()
+			.HasData(SeedData.For(SampleData.Shows.AllSupportSlots));
 
 		modelBuilder.Entity<IdentityUser>()
 			.HasData(SampleData.Users.Admin);
