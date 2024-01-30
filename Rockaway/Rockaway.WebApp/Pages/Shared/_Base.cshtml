@@ -10,7 +10,10 @@
 	<!-- Required for Razor Component support -->
 	<base href="~/" />
 	<component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
-			   render-mode="ServerPrerendered" />
+	           render-mode="ServerPrerendered" />
+
+	<link rel="stylesheet" href="~/Rockaway.WebApp.styles.css" asp-append-version="true" />
+
 	@await RenderSectionAsync("Head", required: false)
 </head>
 <body class="container">

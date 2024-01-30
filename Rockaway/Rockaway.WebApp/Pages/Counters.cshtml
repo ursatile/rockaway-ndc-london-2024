@@ -2,6 +2,11 @@
 @using Rockaway.WebApp.Components
 @model Rockaway.WebApp.Pages.CountersModel
 
+<h2>Ticket Picker!</h2>
+@(await Html.RenderComponentAsync<TicketPicker>(RenderMode.ServerPrerendered, new {  }))
+
+<h2>Counter:</h2>
+
 @(await Html.RenderComponentAsync<Counter>(
 	RenderMode.Server, new { } ))
 
