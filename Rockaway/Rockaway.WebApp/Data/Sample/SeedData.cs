@@ -29,7 +29,7 @@ public static class SeedData {
 		venue.Address,
 		venue.City,
 		venue.PostalCode,
-		venue.CountryCode,
+		venue.CultureName,
 		venue.Telephone,
 		venue.WebsiteUrl
 	};
@@ -45,5 +45,15 @@ public static class SeedData {
 		ShowDate = slot.Show.Date,
 		slot.SlotNumber,
 		ArtistId = slot.Artist.Id
+	};
+	public static IEnumerable<object> For(IEnumerable<TicketType> ticketTypes)
+		=> ticketTypes.Select(ToSeedData);
+
+	static object ToSeedData(TicketType tt) => new {
+		tt.Id,
+		ShowVenueId = tt.Show.Venue.Id,
+		ShowDate = tt.Show.Date,
+		tt.Price,
+		tt.Name
 	};
 }

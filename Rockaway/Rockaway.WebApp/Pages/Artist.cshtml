@@ -19,7 +19,9 @@
 						@show.VenueName, @show.VenueAddress
 					</div>
 					<div class="col-3 text-end">
-						<a class="btn btn-primary" href="javascript:alert('TODO!');">tickets</a>
+						<a  asp-action="show" 
+						    asp-controller="tickets"
+						    asp-all-route-data="@show.RouteData">tickets</a>
 					</div>
 				</div>
 				<div>

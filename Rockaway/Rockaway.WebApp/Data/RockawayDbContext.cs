@@ -12,6 +12,8 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 
 	public DbSet<Artist> Artists { get; set; } = default!;
 	public DbSet<Venue> Venues { get; set; } = default!;
+	public DbSet<Show> Shows { get; set; } = default!;
+	public DbSet<TicketType> TicketTypes { get; set; } = default!;
 
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) {
 		base.ConfigureConventions(configurationBuilder);
@@ -62,6 +64,8 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 			.HasData(SeedData.For(SampleData.Shows.AllShows));
 		modelBuilder.Entity<SupportSlot>()
 			.HasData(SeedData.For(SampleData.Shows.AllSupportSlots));
+		modelBuilder.Entity<TicketType>()
+			.HasData(SeedData.For(SampleData.Shows.AllTicketTypes));
 
 		modelBuilder.Entity<IdentityUser>()
 			.HasData(SampleData.Users.Admin);

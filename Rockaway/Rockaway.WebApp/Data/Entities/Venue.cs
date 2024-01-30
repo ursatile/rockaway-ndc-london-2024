@@ -6,14 +6,14 @@ public class Venue {
 
 	public Venue() { }
 
-	public Venue(Guid id, string name, string slug, string address, string city, string countryCode, string? postalCode, string? telephone,
+	public Venue(Guid id, string name, string slug, string address, string city, string cultureName, string? postalCode, string? telephone,
 		string? websiteUrl) {
 		Id = id;
 		Name = name;
 		Slug = slug;
 		Address = address;
 		City = city;
-		CountryCode = countryCode;
+		CultureName = cultureName;
 		PostalCode = postalCode;
 		Telephone = telephone;
 		WebsiteUrl = websiteUrl;
@@ -35,9 +35,15 @@ public class Venue {
 
 	public string City { get; set; } = String.Empty;
 
-	[Unicode(false)]
-	[MaxLength(2)]
-	public string CountryCode { get; set; } = String.Empty;
+	private CultureInfo cultureInfo;
+
+	public string CultureName {
+		get => cultureInfo.Name;
+		set => cultureInfo = CultureInfo.CreateSpecificCulture(value);
+	}
+
+	public string CountryCode
+		=> CultureName.Split("-").Last();
 
 	public string? PostalCode { get; set; }
 
@@ -61,4 +67,7 @@ public class Venue {
 
 	private IEnumerable<string?> AddressTokens => [Address, City, PostalCode];
 	public string FullAddress => String.Join(", ", AddressTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
+
+	public string FormatPrice(decimal price)
+		=> price.ToString("C", cultureInfo);
 }

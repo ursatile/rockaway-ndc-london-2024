@@ -13,9 +13,10 @@ public class Show {
 
 	public List<SupportSlot> SupportSlots { get; set; } = [];
 
+	public List<TicketType> TicketTypes { get; set; } = [];
+
 	public int NextSupportSlotNumber
 		=> (this.SupportSlots.Count > 0 ? this.SupportSlots.Max(s => s.SlotNumber) : 0) + 1;
-
 
 	public Dictionary<string, string> RouteData => new() {
 		{ "venue", this.Venue.Slug },
