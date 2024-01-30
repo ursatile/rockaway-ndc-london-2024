@@ -1,4 +1,7 @@
 @page "/artist/{slug}"
+@{
+	ViewData["Title"] = Model.Artist.Name;
+}
 @model ArtistModel
 <article class="row">
 	<section class="col-12 col-md-4">
