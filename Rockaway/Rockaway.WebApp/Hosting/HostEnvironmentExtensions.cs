@@ -1,5 +1,3 @@
-// Rockaway.WebApp/Hosting/HostEnvironmentExtensions.cs
-
 namespace Rockaway.WebApp.Hosting;
 
 public static class HostEnvironmentExtensions {

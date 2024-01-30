@@ -1,8 +1,7 @@
 namespace Rockaway.WebApp.Pages;
 
-public class IndexModel : PageModel {
+public class ContactModel : PageModel {
 
 	public void OnGet() {
-
 	}
 }

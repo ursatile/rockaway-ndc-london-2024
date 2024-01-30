@@ -2,10 +2,6 @@ using System.Reflection;
 
 namespace Rockaway.WebApp.Services;
 
-public interface IStatusReporter {
-	public ServerStatus GetStatus();
-}
-
 public class StatusReporter : IStatusReporter {
 	private static DateTimeOffset ApplicationStartedAt = DateTimeOffset.UtcNow;
 	private static readonly Assembly assembly = Assembly.GetEntryAssembly()!;
@@ -16,12 +12,4 @@ public class StatusReporter : IStatusReporter {
 		DateTime = DateTimeOffset.UtcNow.ToString("O"),
 		Uptime = (DateTimeOffset.UtcNow - ApplicationStartedAt).ToString("g"),
 	};
-}
-
-public class ServerStatus {
-	public string Assembly { get; set; } = String.Empty;
-	public string Modified { get; set; } = String.Empty;
-	public string Hostname { get; set; } = String.Empty;
-	public string DateTime { get; set; } = String.Empty;
-	public string Uptime { get; set; } = String.Empty;
 }

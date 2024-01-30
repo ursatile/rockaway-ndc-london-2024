@@ -1,5 +1,3 @@
-// Rockaway.WebApp/Models/ArtistViewData.cs
-
 using Rockaway.WebApp.Data.Entities;
 
 namespace Rockaway.WebApp.Models;

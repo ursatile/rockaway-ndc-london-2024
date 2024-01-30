@@ -1,5 +1,3 @@
-// Rockaway.WebApp/Data/Sample/SampleData.Users.cs
-
 using Microsoft.AspNetCore.Identity;
 
 namespace Rockaway.WebApp.Data.Sample;

@@ -5,11 +5,9 @@
 }
 <header>
 	<h1>
-		<a asp-area="" asp-page="/Index">Rockaway</a>
+		<a asp-area="" asp-page="/Index" asp-page="/Index">Rockaway</a>
 	</h1>
-	<label id="nav-toggle" for="nav-checkbox">
-		<i class="fa-solid fa-bars"></i>
-	</label>
+	<label id="nav-toggle" for="nav-checkbox"><i class="fa-solid fa-bars"></i></label>
 	<input type="checkbox" id="nav-checkbox" />
 	<nav>
 		<a asp-action="Index" asp-controller="Artists">Artists</a>
