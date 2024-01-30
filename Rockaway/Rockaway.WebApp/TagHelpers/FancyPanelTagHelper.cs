@@ -7,6 +7,6 @@ public class FancyPanelTagHelper : TagHelper {
 		base.Process(context, output);
 		output.TagMode = TagMode.StartTagAndEndTag;
 		output.TagName = "div";
-		output.Attributes.Add("class", "fancy-panel");		
+		output.Attributes.Add("class", "fancy-panel");
 	}
 }
