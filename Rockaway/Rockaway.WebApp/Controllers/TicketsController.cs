@@ -28,6 +28,7 @@ public class TicketsController(RockawayDbContext db, IClock clock) : Controller 
 		if (show == default) return NotFound();
 		var ticketOrder = show.CreateOrder(tickets, clock.GetCurrentInstant());
 		db.TicketOrders.Add(ticketOrder);
+		await db.SaveChangesAsync();
 		return Content($"Your order reference is {ticketOrder.Reference}");
 	}
 }
