@@ -55,6 +55,9 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 				slot => slot.SlotNumber
 			);
 		});
+		modelBuilder.Entity<TicketType>(entity => {
+			entity.Property(e => e.Price).HasColumnType("money");
+		});
 
 		modelBuilder.Entity<Artist>()
 			.HasData(SeedData.For(SampleData.Artists.AllArtists));
