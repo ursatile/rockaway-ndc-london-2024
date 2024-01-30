@@ -1,3 +1,5 @@
+using NodaTime;
+
 namespace Rockaway.WebApp.Data.Entities;
 
 public class Venue {
@@ -44,4 +46,17 @@ public class Venue {
 
 	[Url]
 	public string? WebsiteUrl { get; set; }
+
+	public List<Show> Shows { get; set; } = [];
+
+	public Show BookShow(Artist artist, LocalDate date) {
+		var show = new Show {
+			Venue = this,
+			HeadlineArtist = artist,
+			Date = date,
+		};
+		Shows.Add(show);
+		return show;
+	}
+
 }
