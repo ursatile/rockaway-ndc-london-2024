@@ -45,6 +45,10 @@ $border-radius-xxl: 6 * $border-radius;
 
 // 8. Add additional custom code here
 
+@import '../lib/fontawesome/scss/fontawesome.scss';
+@import '../lib/fontawesome/scss/solid.scss';
+@import '../lib/fontawesome/scss/brands.scss';
+
 @mixin fancy-panel($panel-color: color.scale($primary, $lightness: -75%)) {
 	margin: $grid-gutter-width 0;
 	border-radius: 2 * $border-radius;
