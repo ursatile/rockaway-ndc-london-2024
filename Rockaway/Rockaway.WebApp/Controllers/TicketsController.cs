@@ -4,7 +4,7 @@ using Rockaway.WebApp.Models;
 
 namespace Rockaway.WebApp.Controllers;
 
-[Route("tickets/{venue}/{date}")]
+[Route("[action]/{venue}/{date}")]
 public class TicketsController(RockawayDbContext db, IClock clock) : Controller {
 
 	private Task<Show?> FindShow(string venue, LocalDate date) => db.Shows

@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
+using Mjml.Net;
+using RazorEngineCore;
 using Rockaway.WebApp.Data;
 using Rockaway.WebApp.Hosting;
 using Rockaway.WebApp.Services;
+using Rockaway.WebApp.Services.Mail;
 using Rockaway.WebApp.Components;
-
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -15,6 +17,20 @@ builder.Services.AddControllersWithViews(options => {
 builder.Services.AddSingleton<IStatusReporter>(new StatusReporter());
 builder.Services.AddSingleton<IClock>(SystemClock.Instance);
 
+#if DEBUG
+builder.Services.AddSingleton<IMailTemplateProvider>(new DebugMailTemplateProvider());
+#else
+builder.Services.AddSingleton<IMailTemplateProvider>(new ResourceMailTemplateProvider());
+#endif
+builder.Services.AddSingleton<IMailBodyRenderer, MailBodyRenderer>();
+builder.Services.AddSingleton<IRazorEngine, RazorEngine>();
+builder.Services.AddSingleton<IMjmlRenderer, MjmlRenderer>();
+
+builder.Services.AddSingleton<IMailSender, SmtpMailSender>();
+var smtpSettings = new SmtpSettings();
+builder.Configuration.Bind("Smtp", smtpSettings);
+builder.Services.AddSingleton(smtpSettings);
+builder.Services.AddSingleton<ISmtpRelay, SmtpRelay>();
 
 #if DEBUG && !NCRUNCH
 builder.Services.AddSassCompiler();
@@ -43,7 +59,8 @@ builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true
 
 
 builder.Services.AddRazorComponents()
-	.AddInteractiveServerComponents();
+	.AddInteractiveServerComponents()
+	.AddInteractiveWebAssemblyComponents();
 
 var app = builder.Build();
 
@@ -74,7 +91,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseAntiforgery();
 
 app.MapRazorPages();
 app.MapGet("/status", (IStatusReporter reporter) => reporter.GetStatus());
@@ -85,9 +101,9 @@ app.MapAreaControllerRoute(
 ).RequireAuthorization();
 app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 app.MapControllers();
-
 app.MapRazorComponents<App>()
-	.AddInteractiveServerRenderMode();
+	.AddInteractiveServerRenderMode()
+	.AddInteractiveWebAssemblyRenderMode();
 
 app.Run();
 

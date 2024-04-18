@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{9AB5D1
 		..\.github\workflows\main_rockaway-ndc-london.yml = ..\.github\workflows\main_rockaway-ndc-london.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rockaway.RazorComponents", "Rockaway.RazorComponents\Rockaway.RazorComponents.csproj", "{94115724-05C9-4DD2-A5EF-ECF9B1F0108D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6429F3D2-6A45-4533-BA73-221F6751A76E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94115724-05C9-4DD2-A5EF-ECF9B1F0108D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94115724-05C9-4DD2-A5EF-ECF9B1F0108D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94115724-05C9-4DD2-A5EF-ECF9B1F0108D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94115724-05C9-4DD2-A5EF-ECF9B1F0108D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

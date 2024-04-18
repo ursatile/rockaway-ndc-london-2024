@@ -1,5 +1,3 @@
-using NodaTime;
-
 namespace Rockaway.WebApp.Data.Entities;
 
 public class Venue {
@@ -35,15 +33,11 @@ public class Venue {
 
 	public string City { get; set; } = String.Empty;
 
-	private CultureInfo cultureInfo;
+	[Unicode(false)]
+	[MaxLength(16)]
+	public string CultureName { get; set; } = String.Empty;
 
-	public string CultureName {
-		get => cultureInfo.Name;
-		set => cultureInfo = CultureInfo.CreateSpecificCulture(value);
-	}
-
-	public string CountryCode
-		=> CultureName.Split("-").Last();
+	public string CountryCode => CultureName.Split("-").Last();
 
 	public string? PostalCode { get; set; }
 
@@ -65,11 +59,17 @@ public class Venue {
 		return show;
 	}
 
-	public string FormatPrice(decimal price) => price.ToString("C", cultureInfo);
+	public CultureInfo Culture
+		=> CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+			   .FirstOrDefault(ci => ci.Name == CultureName)
+		   ??
+		   CultureInfo.InvariantCulture;
+
+	public string FormatPrice(decimal price) => price.ToString("C", Culture);
 
 	private IEnumerable<string?> AddressTokens => [Address, City, PostalCode];
-	public string FullAddress => String.Join(", ", AddressTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
-
 	private IEnumerable<string?> SummaryTokens => [Name, Address, City, PostalCode, Country.GetName(CountryCode)];
+
+	public string FullAddress => String.Join(", ", AddressTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
 	public string Summary => String.Join(", ", SummaryTokens.Where(s => !String.IsNullOrWhiteSpace(s)));
 }

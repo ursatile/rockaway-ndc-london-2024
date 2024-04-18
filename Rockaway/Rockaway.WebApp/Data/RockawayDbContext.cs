@@ -13,7 +13,6 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 	public DbSet<Artist> Artists { get; set; } = default!;
 	public DbSet<Venue> Venues { get; set; } = default!;
 	public DbSet<Show> Shows { get; set; } = default!;
-	public DbSet<TicketType> TicketTypes { get; set; } = default!;
 	public DbSet<TicketOrder> TicketOrders { get; set; } = default!;
 
 	protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) {
@@ -56,6 +55,7 @@ public class RockawayDbContext(DbContextOptions<RockawayDbContext> options)
 		});
 
 		modelBuilder.Entity<SupportSlot>(entity => {
+			// ReSharper disable once InvokeAsExtensionMethod
 			EntityTypeBuilderExtensions.HasKey(entity,
 				slot => slot.Show.Venue.Id,
 				slot => slot.Show.Date,
